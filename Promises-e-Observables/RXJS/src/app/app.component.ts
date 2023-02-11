@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +40,9 @@ export class AppComponent implements OnInit {
         }, 5000);
       }
       else {
-        reject(`Ops! Você não é o Danilo! Seu nome é ${nome}`);
+        setTimeout(() => {
+          reject(`Ops! Você não é o Danilo! Seu nome é ${nome}`);
+        }, 5000);
       }
     })
   }
@@ -51,8 +54,40 @@ export class AppComponent implements OnInit {
       .catch(erro => console.log(erro));
   }
 
+  minhaObservable(nome: string): Observable<string> {
+    return new Observable(subscriber => {
+      if (nome === 'Rosana') {
+        setTimeout(() => {
+          subscriber.next(`Olá! ${nome}`);
+        }, 1000);
+        setTimeout(() => {
+          subscriber.next(`Olá! ${nome}, de novo!`);
+        }, 2000);
+        setTimeout(() => {
+          subscriber.next(`Olá! ${nome}, mais uma vez!`);
+        }, 3000);
+      }
+      else {
+        subscriber.error('Ops! Deu erro na Observable!');
+      }
+
+    });
+  }
+
+  invocarObservable(nome: string): void {
+    console.log('Invocando Observable!');
+    this.minhaObservable(nome)
+      .subscribe({
+        next: (next) => console.log(next),
+        error: (error) => console.error(error),
+        complete: () => console.info('Observable Completo')
+      });
+  }
+
   ngOnInit(): void {
     this.invocarPromise('Danilo');
     this.invocarPromise('João');
+    this.invocarObservable('Rosana');
+    this.invocarObservable('Raquel');
   }
 }
