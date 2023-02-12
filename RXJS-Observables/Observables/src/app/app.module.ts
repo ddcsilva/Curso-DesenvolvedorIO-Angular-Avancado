@@ -18,7 +18,12 @@ import { HomeComponent } from './componentes/home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObservablesComponent } from './componentes/aulas/observables/observables.component';
+import { FormControlsEFormGroupsComponent } from './componentes/aulas/form-controls-e-form-groups/form-controls-e-form-groups.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { ObservablesComponent } from './componentes/aulas/observables/observable
     NavComponent,
     PromisesComponent,
     HomeComponent,
-    ObservablesComponent
+    ObservablesComponent,
+    FormControlsEFormGroupsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,12 @@ import { ObservablesComponent } from './componentes/aulas/observables/observable
     MatExpansionModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
