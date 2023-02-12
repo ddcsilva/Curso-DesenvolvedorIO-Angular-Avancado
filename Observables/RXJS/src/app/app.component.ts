@@ -48,18 +48,27 @@ export class AppComponent implements OnInit {
       else {
         subscriber.error('Ops! Deu erro na Observable!');
       }
-
+      subscriber.complete();
     });
   }
 
   invocarObservable(nome: string): void {
     console.log('Invocando Observable!');
-    this.minhaObservable(nome)
-      .subscribe({
-        next: (next) => console.log(next),
-        error: (error) => console.error(error),
-        complete: () => console.info('Observable Completo')
-      });
+    // this.minhaObservable(nome)
+    //   .subscribe({
+    //     next: (next) => console.log(next),
+    //     error: (error) => console.error(error),
+    //     complete: () => console.info('Observable Completo')
+    //   });
+
+      const observer = {
+        next: (next: any) => console.log(`Next: ${next}`),
+        error: (error: any) => console.error(`Error: ${error}`),
+        complete: () => console.info('Observable Completo') 
+      }
+
+      this.minhaObservable(nome)
+      .subscribe(observer);
   }
 
   ngOnInit(): void {
