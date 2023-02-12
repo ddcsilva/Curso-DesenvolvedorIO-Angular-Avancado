@@ -1,33 +1,34 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar routerLink="">
       <button type="button" routerLink="">
-      <mat-icon>home</mat-icon>
-    </button>
-  <span class="titulo">Home</span></mat-toolbar>
+        <mat-icon>home</mat-icon>
+      </button>
+      <span class="titulo">Home</span></mat-toolbar>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         RXJS - Observables
       </mat-expansion-panel-header>
       <mat-nav-list dense>
-          <a mat-list-item routerLink="aulas/promises">Promises</a>
-          <a mat-list-item routerLink="#">Observable</a>
-          <a mat-list-item routerLink="#">Observers</a>
-          <a mat-list-item routerLink="#">Subscribe e Unsubscribe</a>
+        <a mat-list-item routerLink="aulas/promises">Promises</a>
+        <a mat-list-item routerLink="aulas/observables">Observable</a>
+        <a mat-list-item routerLink="#">Observers</a>
+        <a mat-list-item routerLink="#">Subscribe e Unsubscribe</a>
       </mat-nav-list>
-  </mat-expansion-panel>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        Reactive Forms
+      </mat-expansion-panel-header>
+      <mat-nav-list dense>
+      </mat-nav-list>
+    </mat-expansion-panel>
 
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>

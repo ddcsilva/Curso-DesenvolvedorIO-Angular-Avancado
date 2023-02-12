@@ -18,13 +18,15 @@ import { HomeComponent } from './componentes/home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { ObservablesComponent } from './componentes/aulas/observables/observables.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     PromisesComponent,
-    HomeComponent
+    HomeComponent,
+    ObservablesComponent
   ],
   imports: [
     BrowserModule,

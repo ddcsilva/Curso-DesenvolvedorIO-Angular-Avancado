@@ -1,3 +1,4 @@
+import { ObservablesComponent } from './componentes/aulas/observables/observables.component';
 import { PromisesComponent } from './componentes/aulas/promises/promises.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'aulas/promises',
     component: PromisesComponent
+  },
+  {
+    path: 'aulas/observables',
+    component: ObservablesComponent
   }
 ];
 
