@@ -52,27 +52,93 @@ export class AppComponent implements OnInit {
     });
   }
 
-  invocarObservable(nome: string): void {
-    console.log('Invocando Observable!');
-    // this.minhaObservable(nome)
-    //   .subscribe({
-    //     next: (next) => console.log(next),
-    //     error: (error) => console.error(error),
-    //     complete: () => console.info('Observable Completo')
-    //   });
+  usuarioObservable(nome: string, email: string): Observable<Usuario> {
+    return new Observable(subscriber => {
+      if (nome === 'Admin') {
+        let usuario = new Usuario(nome, email);
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 1000);
 
-      const observer = {
-        next: (next: any) => console.log(`Next: ${next}`),
-        error: (error: any) => console.error(`Error: ${error}`),
-        complete: () => console.info('Observable Completo') 
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 2000);
+
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 3000);
+
+        setTimeout(() => {
+          subscriber.next(usuario);
+        }, 4000);
+
+        setTimeout(() => {
+          subscriber.complete();
+        }, 5000);
       }
+      else {
+        subscriber.error('Ops! Deu erro na Observable!');
+      }
+    });
+  }
 
-      this.minhaObservable(nome)
+  invocarObservableExemplo1(nome: string): void {
+    console.log('Invocando Observable! Exemplo 1');
+
+    this.minhaObservable(nome)
+      .subscribe({
+        next: (next) => console.log(next),
+        error: (error) => console.error(error),
+        complete: () => console.info('Observable Completo')
+      });
+  }
+
+  invocarObservableExemplo2(nome: string): void {
+    console.log('Invocando Observable! Exemplo 2');
+
+    const observer = {
+      next: (next: any) => console.log(`Next: ${next}`),
+      error: (error: any) => console.error(`Error: ${error}`),
+      complete: () => console.info('Observable Completo')
+    }
+
+    this.minhaObservable(nome)
       .subscribe(observer);
   }
 
-  ngOnInit(): void {
-    this.invocarObservable('Rosana');
-    this.invocarObservable('Raquel');
+  invocarObservableExemplo3(nome: string, email: string): void {
+    console.log('Invocando Observable!');
+
+    const observer = {
+      next: (next: any) => console.log('Next:', next),
+      error: (error: any) => console.error('Error: ', error),
+      complete: () => console.info('FIM!')
+    }
+
+    const obs = this.usuarioObservable(nome, email);
+    const subs = obs.subscribe(observer);
+
+    setTimeout(() => {
+      subs.unsubscribe();
+      console.log('Conexão fechada :' + subs.closed);
+    }, 3500);
   }
+
+  ngOnInit(): void {
+    // this.invocarObservableExemplo1('Rosana');
+    // this.invocarObservableExemplo1('Raquel');
+    // this.invocarObservableExemplo2('Rosana');
+    // this.invocarObservableExemplo2('Raquel');
+    this.invocarObservableExemplo3('Admin', 'admin@admin.com');
+  }
+}
+
+export class Usuario {
+  constructor(nome: string, email: string) {
+    this.nome = nome;
+    this.email = email;
+  }
+
+  nome: string;
+  email: string;
 }
