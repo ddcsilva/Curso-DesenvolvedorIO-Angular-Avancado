@@ -6,18 +6,18 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ContaRoutingModule } from './conta/conta.route';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NavegacaoModule,
-    NgbModule
+    NgbModule,
+    ContaRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
